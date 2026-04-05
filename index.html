@@ -349,19 +349,19 @@
           </form>
         `;
       } 
-     else {
+     eelse {
         modalData.innerHTML = `
           <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
           <form class="form-style" action="https://formspree.io/f/${idPagos}" method="POST">
-            <input type="hidden" name="_next" value="${linkPagoMP}">
+            <input type="hidden" name="_next" value="https://mpago.la/1NwLYcD">
             
             <input type="text" name="Nombre" placeholder="Nombre completo" required>
             <input type="email" name="_replyto" placeholder="Correo electrónico" required>
             
             <select name="Fecha_Elegida" required>
               <option value="" disabled selected>Elegir fecha del curso</option>
-              <option value="16 de Abril">Jueves 16 de Abril, 18:00</option>
-              <option value="22 de Abril">Miércoles 22 de Abril, 18:00</option>
+              <option value="16 de Abril">Jueves 16 de Abril</option>
+              <option value="22 de Abril">Miércoles 22 de Abril</option>
             </select>
 
             <input type="number" name="Edad" placeholder="Edad" required>
@@ -377,8 +377,6 @@
           </form>
         `;
       }
-      document.getElementById('courseModal').style.display = "block";
-    }
 
     function closeModal() { document.getElementById('courseModal').style.display = "none"; }
     window.onclick = function(event) { if (event.target == document.getElementById('courseModal')) closeModal(); }
