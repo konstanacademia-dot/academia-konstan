@@ -349,7 +349,7 @@
           </form>
         `;
       } 
-     eelse {
+      else {
         modalData.innerHTML = `
           <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
           <form class="form-style" action="https://formspree.io/f/${idPagos}" method="POST">
@@ -377,6 +377,9 @@
           </form>
         `;
       }
+      // Esta línea es clave: activa el modal
+      document.getElementById('courseModal').style.display = "block";
+    }
 
     function closeModal() { document.getElementById('courseModal').style.display = "none"; }
     window.onclick = function(event) { if (event.target == document.getElementById('courseModal')) closeModal(); }
