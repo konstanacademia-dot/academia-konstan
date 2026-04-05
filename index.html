@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konstan Academia | Felipe M. Daffunchio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #f56834; 
+      --secondary: #E63946; 
+      --background: #051421; 
+      --surface: #0c253d; 
+      --text-main: #FFFFFF; 
+      --text-muted: #e0e0e0;
+      --font-title: 'Merriweather', serif; 
+      --font-subtitle: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif; 
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s, color 0.3s; }
+    
+    body { 
+      background-color: var(--background); 
+      color: var(--text-main); 
+      font-family: var(--font-body); 
+      line-height: 1.6; 
+    }
+
+    h1, h2, h3, p, li, span, div { color: #FFFFFF !important; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero { text-align: center; padding: 80px 0 50px 0; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-family: var(--font-title); }
+    .hero p { font-family: var(--font-subtitle); color: var(--text-muted) !important; font-size: 1.2rem; }
+
+    /* AJUSTE DE GRILLA PARA MÚLTIPLES CURSOS */
+    .course-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 30px; 
+      margin-bottom: 80px; 
+      justify-items: center;
+    }
+
+    .course-card { 
+      background: var(--surface); 
+      border-radius: 12px; 
+      overflow: hidden; 
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7); 
+      width: 100%; 
+      max-width: 400px;
+      border: 2px solid var(--primary); 
+    }
+    
+    .course-img-container { 
+      height: 480px; 
+      background-color: #000; 
+      background-size: cover; 
+      background-position: center; 
+    }
+    
+    .course-content { padding: 25px; background: var(--surface); text-align: center; }
+
+    .btn { padding: 15px; border-radius: 6px; font-weight: 700; cursor: pointer; border: none; display: block; width: 100%; margin-bottom: 10px; text-align: center; font-size: 1rem; text-transform: uppercase; font-family: var(--font-subtitle); text-decoration: none; }
+    .btn-primary { background: var(--secondary); color: #fff !important; }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: #FFFFFF !important; }
+
+    .about-section { 
+      background: #f56834; 
+      padding: 90px 0; 
+      margin-top: 50px;
+    }
+    .about-section h2, .about-section p, .about-section li, .about-section strong { color: #FFFFFF !important; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
+
+    .profile-photo-wrapper {
+      background: rgba(255,255,255,0.1); 
+      height: 450px; 
+      border-radius: 12px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      border: 2px solid #FFFFFF;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .profile-photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+    .bio-tags { 
+      margin-top: 20px; 
+      font-size: 0.9rem; 
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 15px;
+    }
+
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); overflow-y: auto; }
+    .modal-content { background: #FFFFFF; margin: 5vh auto; padding: 40px; border-radius: 12px; max-width: 750px; position: relative; border: 4px solid var(--primary); }
+    .modal-content * { color: #1a1a1a !important; } 
+    .close { position: absolute; right: 20px; top: 10px; font-size: 35px; cursor: pointer; color: #666 !important; }
+    
+    .form-style { display: grid; gap: 15px; margin-top: 20px; }
+    .form-style input, .form-style select, .form-style textarea { padding: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff; color: #000 !important; }
+    .form-style button { color: #FFFFFF !important; }
+
+    .highlight-box { background: #f0f7ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 6px solid var(--primary); }
+  </style>
+</head>
+<body>
+
+  <header class="hero container">
+    <h1>Konstan Academia</h1>
+    <p>Rigor académico y divulgación histórica profesional.</p>
+  </header>
+
+  <section class="container course-grid">
+    <article class="course-card">
+      <div class="course-img-container" style="background-image: url('flyer.png'), url('flyer.jpg');"></div>
+      <div class="course-content">
+        <button class="btn btn-outline" onclick="openModal('plan-iran')">Ver plan de estudios</button>
+        <button class="btn btn-primary" onclick="openModal('form')">Inscribirse</button>
+      </div>
+    </article>
+
+    <article class="course-card">
+      <div class="course-img-container" style="background-image: url('africa.png'), url('africa.jpg');"></div>
+      <div class="course-content">
+        <button class="btn btn-outline" onclick="openModal('plan-africa')">Ver plan de estudios</button>
+        </div>
+    </article>
+
+    <article class="course-card">
+      <div class="course-img-container" style="background-image: url('rus.png'), url('rus.jpg');"></div>
+      <div class="course-content">
+        <button class="btn btn-outline" onclick="openModal('plan-rusia')">Ver plan de estudios</button>
+      </div>
+    </article>	
+  </section>
+
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="profile-photo-wrapper">
+        <img src="felipe-daffunchio.jpg" alt="Felipe M. Daffunchio" onerror="this.src='felipe-daffunchio.png'">
+      </div>
+      <div class="about-text">
+        <h2 style="font-family: var(--font-title); margin-bottom:10px; font-size: 2.8rem;">Felipe M. Daffunchio</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 25px; font-weight: 600; color: #FFFFFF;">Historiador y Encargado del Museo Naval de la Nación</p>
+        
+        <p style="margin-bottom: 15px; font-size: 1.1rem;">Profesor de Historia (UNTREF) con especialización en <strong>Historia Global por la Universidad de Princeton</strong>. Posee una sólida trayectoria en la gestión de museos nacionales, habiéndose desempeñado como investigador en el <strong>Museo de la Inmigración, Museo Histórico del Ejército Argentino y el Departamento de Estudios Históricos Navales.</strong></p>
+        
+        <p style="font-size: 1.1rem;">Actualmente trabaja en el <strong>Museo Naval de la Nación</strong>, centrando su labor en la preservación del patrimonio y la creación de narrativas históricas. Es el creador del proyecto <strong>"Malvinas: Forgotten Tales"</strong>, integrando rigor académico con las metodologías pedagógicas de la <strong>Florida International University (FIU).</strong></p>
+
+        <div class="bio-tags">
+          <span>UNTREF • Princeton University • FIU Florida</span>
+        </div>
+
+        <button class="btn btn-outline" style="max-width: 220px; margin-top: 35px; border-color: #FFFFFF; background: rgba(255,255,255,0.1);" onclick="openModal('contacto')">Contacto Directo</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="courseModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modalData"></div>
+    </div>
+  </div>
+
+  <script>
+    const linkPagoMP = "https://mpago.la/1NwLYcD"; 
+    const idPagos = "xwvwbzlp"; 
+    const idConsultas = "xreokdpe"; 
+
+    function openModal(type) {
+      const modalData = document.getElementById('modalData');
+      
+      // PLAN DE ESTUDIOS: IRÁN
+     if(type === 'plan-iran') {
+        modalData.innerHTML = `
+          <div class="plan-container">
+            <h2 style="color: #f56834 !important; font-size: 1.8rem; margin-bottom: 10px;">Comprender Irán: Las raíces del conflicto con EEUU</h2>
+            
+            <div class="highlight-box">
+              <strong style="color: #f56834 !important; display: block; margin-bottom: 5px;">OBJETIVO</strong>
+              <p style="font-size: 0.95rem; line-height: 1.5;">Proporcionar una visión integral y crítica de la identidad iraní, su historia reciente como imperio persa, intervenciones extranjeras, el rol del petróleo y la Revolución Islámica a fines de entender su conflicto actual con Estados Unidos. Al finalizar, el participante podrá descifrar la lógica de supervivencia del régimen iraní en el siglo XXI y sus fracturas sociales ante la crisis y avances tecnológicos.</p>
+            </div>
+
+            <div style="margin: 15px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+              <p><strong>DURACIÓN:</strong> DOS HORAS</p>
+              <p><strong>RECURSOS USADOS:</strong> Diapositivas acompañadas con imágenes, mapas, estadísticas y clips de videos del momento o películas relacionadas a los hechos.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 1</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Aspectos geográficos y demográficos sobre Irán.</li>
+                  <li>Breve historia y origen de la cultura Iraní y su diferenciación frente a los “países árabes”.</li>
+                  <li>Cómo Irán se ve actualmente en el mundo.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 2</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Descubrimiento del petróleo e intervención británica.</li>
+                  <li>Consolidación del nacionalismo Iraní y nacionalización del petróleo.</li>
+                  <li>Intervención de Estados Unidos e instauración de la dictadura.</li>
+                  <li>Modernización forzada y problemas internos (1953-1979).</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 3</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Revolución de 1979 y consolidación de la República Islámica.</li>
+                  <li>Guerra de Iraq-Irán.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 4</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>El rol de Irán en Medio Oriente y la guerra con Estados Unidos.</li>
+                  <li>El “Eje de resistencia”, Programa nuclear y sanciones económicas.</li>
+                  <li>La sociedad iraní hoy en día y tensiones con el gobierno actual.</li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:25px;" onclick="openModal('form')">Inscribirse al Curso</button>
+          </div>
+        `;
+      } 
+      
+      // PLAN DE ESTUDIOS: ÁFRICA
+      else if(type === 'plan-africa') {
+        modalData.innerHTML = `
+          <div class="plan-container">
+            <h2 style="color: #f56834 !important; font-size: 1.8rem; margin-bottom: 10px;">Genocidios en África: Cómo entender el laberinto de un continente</h2>
+            
+            <div class="highlight-box">
+              <strong style="color: #f56834 !important; display: block; margin-bottom: 5px;">OBJETIVO</strong>
+              <p style="font-size: 0.95rem; line-height: 1.5;">Proporcionar una visión integral y crítica de la historia africana contemporánea, analizando cómo la herencia colonial, las fronteras artificiales y la lucha por recursos estratégicos sentaron las bases para los genocidios del siglo XX y XXI. El participante podrá descifrar la lógica política detrás de las masacres, alejándose de la idea simplista del "odio ancestral".</p>
+            </div>
+
+            <div style="margin: 15px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+              <p><strong>DURACIÓN:</strong> DOS HORAS</p>
+              <p><strong>RECURSOS:</strong> Diapositivas dinámicas, análisis de Propaganda, Infografías Geopolíticas, Clips Audiovisuales.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 1</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>La Escuadra y el Lápiz, Conferencia de Berlín (1884). Reparto de recursos.</li>
+                  <li>La Identidad como Arma.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 2</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Ruanda 1994, propaganda y deshumanización (el término "cucarachas").</li>
+                  <li>La Inacción Internacional.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 3</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Darfur y el Congo, el primer genocidio del siglo XXI.</li>
+                  <li>"Guerra Mundial Africana": el coltán de los celulares como motor.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 4</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Justicia y Futuro, los Tribunales Gacaca en Ruanda.</li>
+                  <li>Tablero 2026: El rol de China, mercenarios rusos (Wagner) y nueva carrera por África.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // PLAN DE ESTUDIOS: RUSIA
+      else if(type === 'plan-rusia') {
+        modalData.innerHTML = `
+          <div class="plan-container">
+            <h2 style="color: #f56834 !important; font-size: 1.8rem; margin-bottom: 10px;">La Democracia Imposible: La eterna sombra imperial en Rusia</h2>
+            
+            <div class="highlight-box">
+              <strong style="color: #f56834 !important; display: block; margin-bottom: 5px;">OBJETIVO</strong>
+              <p style="font-size: 0.95rem; line-height: 1.5;">Proporcionar una visión integral de la estructura del poder ruso, analizando la transición fallida del totalitarismo soviético al autoritarismo moderno. Al finalizar, el participante podrá descifrar la lógica del "Vertical de Poder", entender cómo la geografía y la historia imperial condicionan la política exterior de Moscú y analizar las fracturas de una sociedad entre la nostalgia y la hipermodernidad digital.</p>
+            </div>
+
+            <div style="margin: 15px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+              <p><strong>DURACIÓN:</strong> DOS HORAS</p>
+              <p><strong>RECURSOS USADOS:</strong> Diapositivas dinámicas, mapas, gráficos de poder, análisis de fotografías, medios, cine y literatura.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 1</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Herencia Imperial y el "Estado-Civilización".</li>
+                  <li>El trauma de la caída de la URSS.</li>
+                  <li>La Geografía como Destino.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 2</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Los Años 90, "Democracia" como sinónimo de caos, mafia y humillación.</li>
+                  <li>Surgimiento de los Oligarcas.</li>
+                  <li>La llegada de Putin y el pacto social.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 3</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Control de la energía como arma diplomática.</li>
+                  <li>Servicios de inteligencia y el Estado.</li>
+                  <li>Ucrania y el "Mundo Ruso".</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 4</h3>
+                <ul style="font-size: 0.85rem; padding-left: 15px;">
+                  <li>Rusia 2026, nueva generación digital y represión tecnológica.</li>
+                  <li>Alianza con China e Irán.</li>
+                  <li>Un imperio que se niega a morir.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      else if(type === 'contacto') {
+        modalData.innerHTML = `
+          <h2 style="color: #f56834 !important;">Enviar Consulta</h2>
+          <form class="form-style" action="https://formspree.io/f/${idConsultas}" method="POST">
+            <input type="text" name="Nombre" placeholder="Tu nombre" required>
+            <input type="email" name="_replyto" placeholder="Tu correo electrónico" required>
+            <textarea name="Consulta" placeholder="¿En qué podemos ayudarte?" required></textarea>
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+          </form>
+        `;
+      } 
+      else {
+        modalData.innerHTML = `
+          <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
+          <form class="form-style" action="https://formspree.io/f/${idPagos}" method="POST">
+            <input type="hidden" name="_next" value="${linkPagoMP}">
+            <input type="text" name="Nombre" placeholder="Nombre completo" required>
+            <input type="email" name="_replyto" placeholder="Correo electrónico" required>
+            <input type="number" name="Edad" placeholder="Edad" required>
+            <select name="Nivel_Academico" required>
+              <option value="" disabled selected>Nivel académico</option>
+              <option value="Secundario">Secundario</option>
+              <option value="Universitario">Universitario / Terciario</option>
+              <option value="Graduado">Graduado Profesional</option>
+              <option value="Aficionado">Interés General</option>
+            </select>
+            <input type="text" name="Ciudad" placeholder="Ciudad y País" required>
+            <button type="submit" class="btn btn-primary">Confirmar e ir al Pago</button>
+          </form>
+        `;
+      }
+      document.getElementById('courseModal').style.display = "block";
+    }
+
+    function closeModal() { document.getElementById('courseModal').style.display = "none"; }
+    window.onclick = function(event) { if (event.target == document.getElementById('courseModal')) closeModal(); }
+  </script>
+</body>
+</html>
