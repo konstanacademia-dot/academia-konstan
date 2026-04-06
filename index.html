@@ -350,7 +350,7 @@
         `;
       } 
       else {
-        // ELIMINAMOS 'ACTION' Y 'METHOD' PARA QUE EL NAVEGADOR NO SE VAYA DE LA PÁGINA
+        // FORMULARIO SIN REDIRECCIÓN Y MENSAJE DETALLADO
         modalData.innerHTML = `
           <div id="form-container-inscripcion">
             <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
@@ -379,9 +379,15 @@
           </div>
 
           <div id="success-message" style="display: none; text-align: center; padding: 20px;">
-            <h2 style="color: #28a745 !important;">¡Datos registrados!</h2>
-            <p style="color: #333 !important; margin-bottom: 25px;">Tu inscripción fue enviada con éxito. Ahora solo falta realizar el pago para asegurar tu cupo.</p>
-            <a href="${linkPagoMP}" class="btn btn-primary" style="text-decoration: none; background-color: #009ee3; color: white !important; display: block;">Ir a Pagar (Mercado Pago)</a>
+            <h2 style="color: #28a745 !important; margin-bottom: 20px;">¡Datos enviados correctamente!</h2>
+            
+            <div style="text-align: left; color: #333 !important; line-height: 1.6; margin-bottom: 25px;">
+              <p>Ahora solo falta <strong>realizar el pago</strong> para finalizar la inscripción.</p>
+              <p style="margin-top: 10px;">Una vez hecho el pago, es necesario <strong>enviar el comprobante a konstanacademia@gmail.com</strong> junto al <strong>nombre y apellido</strong> del inscripto.</p>
+              <p style="margin-top: 10px;">Te enviaremos un mail para confirmar tu cupo (recordá <strong>chequear la carpeta de spam</strong>). Muchas gracias.</p>
+            </div>
+
+            <a href="${linkPagoMP}" class="btn btn-primary" style="text-decoration: none; background-color: #009ee3; color: white !important; display: block; font-size: 1.1rem;">Ir a Pagar (Mercado Pago)</a>
           </div>
         `;
 
@@ -389,8 +395,7 @@
         const btn = document.getElementById('submitBtn');
 
         form.addEventListener("submit", function(e) {
-          e.preventDefault(); // ESTO ES CLAVE: Detiene la redirección externa
-          
+          e.preventDefault();
           btn.innerText = "Enviando...";
           btn.disabled = true;
 
@@ -399,13 +404,10 @@
           fetch("https://formspree.io/f/" + idPagos, {
             method: 'POST',
             body: data,
-            headers: {
-              'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
           })
           .then(response => {
             if (response.ok) {
-              // Si Formspree recibe el dato, mostramos el botón azul
               document.getElementById('form-container-inscripcion').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
             } else {
