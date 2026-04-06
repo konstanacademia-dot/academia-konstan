@@ -350,12 +350,12 @@
         `;
       } 
       else {
-        // FORMULARIO CON MENSAJE DE ÉXITO INTERMEDIO
+        // FORMULARIO CON ID ÚNICO Y LÓGICA REFORZADA
         modalData.innerHTML = `
-          <div id="form-container">
+          <div id="form-container-inscripcion">
             <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
             <p style="color: #333 !important; margin-bottom: 15px;">Completá tus datos para registrarte.</p>
-            <form class="form-style" id="registrationForm" action="https://formspree.io/f/${idPagos}" method="POST">
+            <form class="form-style" id="ajaxForm">
               <input type="text" name="Nombre" placeholder="Nombre completo" required>
               <input type="email" name="_replyto" placeholder="Correo electrónico" required>
               
@@ -374,7 +374,7 @@
                 <option value="Aficionado">Interés General</option>
               </select>
               <input type="text" name="Ciudad" placeholder="Ciudad y País" required>
-              <button type="submit" class="btn btn-primary">Registrar mis datos</button>
+              <button type="submit" id="submitBtn" class="btn btn-primary">Registrar mis datos</button>
             </form>
           </div>
 
@@ -385,24 +385,37 @@
           </div>
         `;
 
-        const form = document.getElementById('registrationForm');
-        form.onsubmit = function(e) {
+        const form = document.getElementById('ajaxForm');
+        const btn = document.getElementById('submitBtn');
+
+        form.addEventListener("submit", function(e) {
           e.preventDefault();
-          const formData = new FormData(form);
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          const data = new FormData(form);
           
-          fetch(form.action, {
+          fetch("https://formspree.io/f/" + idPagos, {
             method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          }).then(response => {
+            body: data,
+            headers: {
+              'Accept': 'application/json'
+            }
+          })
+          .then(response => {
             if (response.ok) {
-              document.getElementById('form-container').style.display = 'none';
+              document.getElementById('form-container-inscripcion').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
             } else {
-              alert("Hubo un error al enviar los datos. Por favor, reintentá.");
+              throw new Error('Error en el servidor');
             }
+          })
+          .catch(error => {
+            alert("Hubo un problema al enviar los datos. Por favor, reintentá.");
+            btn.innerText = "Registrar mis datos";
+            btn.disabled = false;
           });
-        };
+        });
       }
       document.getElementById('courseModal').style.display = "block";
     }
