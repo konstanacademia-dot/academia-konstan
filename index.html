@@ -350,7 +350,7 @@
         `;
       } 
       else {
-        // FORMULARIO SIN ACTION/METHOD PARA EVITAR REDIRECCIÓN EXTERNA
+        // ELIMINAMOS 'ACTION' Y 'METHOD' PARA QUE EL NAVEGADOR NO SE VAYA DE LA PÁGINA
         modalData.innerHTML = `
           <div id="form-container-inscripcion">
             <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
@@ -389,7 +389,7 @@
         const btn = document.getElementById('submitBtn');
 
         form.addEventListener("submit", function(e) {
-          e.preventDefault(); // BLOQUEA la redirección a Formspree
+          e.preventDefault(); // ESTO ES CLAVE: Detiene la redirección externa
           
           btn.innerText = "Enviando...";
           btn.disabled = true;
@@ -405,15 +405,15 @@
           })
           .then(response => {
             if (response.ok) {
-              // Si Formspree responde OK, mostramos el botón de Mercado Pago
+              // Si Formspree recibe el dato, mostramos el botón azul
               document.getElementById('form-container-inscripcion').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
             } else {
-              throw new Error('Error en el envío');
+              throw new Error('Error');
             }
           })
           .catch(error => {
-            alert("Hubo un error al enviar los datos. Por favor, reintentá.");
+            alert("Hubo un error. Por favor, intentá de nuevo.");
             btn.innerText = "Registrar mis datos";
             btn.disabled = false;
           });
