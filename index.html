@@ -6,7 +6,7 @@
   <title>Konstan Academia | Felipe M. Daffunchio</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
+<style>
     :root {
       --primary: #f56834; 
       --secondary: #E63946; 
@@ -36,7 +36,7 @@
     .hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-family: var(--font-title); }
     .hero p { font-family: var(--font-subtitle); color: var(--text-muted) !important; font-size: 1.2rem; }
 
-    /* AJUSTE DE GRILLA PARA MÚLTIPLES CURSOS */
+    /* GRILLA DE CURSOS */
     .course-grid { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -99,16 +99,53 @@
       padding-top: 15px;
     }
 
+    /* MODAL */
     .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); overflow-y: auto; }
-    .modal-content { background: #FFFFFF; margin: 5vh auto; padding: 40px; border-radius: 12px; max-width: 750px; position: relative; border: 4px solid var(--primary); }
+    .modal-content { background: #FFFFFF; margin: 5vh auto; padding: 40px; border-radius: 12px; max-width: 750px; position: relative; border: 4px solid var(--primary); width: 90%; }
     .modal-content * { color: #1a1a1a !important; } 
     .close { position: absolute; right: 20px; top: 10px; font-size: 35px; cursor: pointer; color: #666 !important; }
     
     .form-style { display: grid; gap: 15px; margin-top: 20px; }
-    .form-style input, .form-style select, .form-style textarea { padding: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff; color: #000 !important; }
+    .form-style input, .form-style select, .form-style textarea { padding: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff; color: #000 !important; width: 100%; }
     .form-style button { color: #FFFFFF !important; }
 
     .highlight-box { background: #f0f7ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 6px solid var(--primary); }
+
+    /* --- AJUSTES PARA CELULARES --- */
+    @media (max-width: 768px) {
+      .hero { padding: 40px 0 30px 0; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+
+      .course-grid { 
+        grid-template-columns: 1fr; 
+        padding: 0 10px; 
+      }
+      .course-card { max-width: 100%; }
+      .course-img-container { height: 400px; }
+
+      .about-grid { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        gap: 30px; 
+      }
+      .profile-photo-wrapper { 
+        height: 350px; 
+        width: 280px; 
+        margin: 0 auto; 
+      }
+      .about-text h2 { font-size: 2.2rem !important; }
+
+      .modal-content { 
+        padding: 25px 15px; 
+        margin: 2vh auto; 
+      }
+      
+      /* Ajuste de columnas en el plan de estudio para celular */
+      div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
