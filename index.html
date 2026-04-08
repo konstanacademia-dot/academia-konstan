@@ -460,6 +460,9 @@
           })
           .then(response => {
             if (response.ok) {
+              // --- EL PIXEL AVISA A META QUE HAY UN INSCRIPTO NUEVO ---
+              fbq('track', 'Lead'); 
+              
               document.getElementById('form-container-inscripcion').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
             } else {
