@@ -401,8 +401,8 @@
           </form>
         `;
       } 
-      else {
-        // FORMULARIO SIN REDIRECCIÓN Y MENSAJE DETALLADO
+    else {
+        // FORMULARIO DE INSCRIPCIÓN CON OPCIONES DE PAGO
         modalData.innerHTML = `
           <div id="form-container-inscripcion">
             <h2 style="color: #f56834 !important;">Formulario de Inscripción</h2>
@@ -413,8 +413,8 @@
               
               <select name="Fecha_Elegida" required>
                 <option value="" disabled selected>Elegir fecha del curso</option>
-                <option value="7 de Mayo">Jueves 16 de Mayo, 18:00</option>
-                <option value="13 de Mayo">Miércoles 22 de Mayo, 18:00</option>
+                <option value="16 de Mayo">Jueves 16 de Mayo, 18:00</option>
+                <option value="22 de Mayo">Miércoles 22 de Mayo, 18:00</option>
               </select>
 
               <input type="number" name="Edad" placeholder="Edad" required>
@@ -434,12 +434,32 @@
             <h2 style="color: #28a745 !important; margin-bottom: 20px;">¡Datos enviados correctamente!</h2>
             
             <div style="text-align: left; color: #333 !important; line-height: 1.6; margin-bottom: 25px;">
-              <p>Ahora solo falta <strong>realizar el pago</strong> para finalizar la inscripción.</p>
-              <p style="margin-top: 10px;">Una vez hecho el pago, es necesario <strong>enviar el comprobante a konstanacademia@gmail.com</strong> junto al <strong>nombre y apellido</strong> del inscripto.</p>
-              <p style="margin-top: 10px;">Te enviaremos un mail para confirmar tu cupo (recordá <strong>chequear la carpeta de spam</strong>). Muchas gracias.</p>
+              <p>Para finalizar tu inscripción, elegí tu método de pago preferido:</p>
             </div>
 
-            <a href="${linkPagoMP}" class="btn btn-primary" style="text-decoration: none; background-color: #009ee3; color: white !important; display: block; font-size: 1.1rem;">Ir a Pagar (Mercado Pago)</a>
+            <a href="${linkPagoMP}" target="_blank" class="btn btn-primary" style="text-decoration: none; background-color: #009ee3; color: white !important; display: block; font-size: 1.1rem; margin-bottom: 15px;">
+              Pagar con Mercado Pago
+            </a>
+
+            <button onclick="document.getElementById('datos-transferencia').style.display='block'" class="btn btn-outline" style="border-color: #f56834; color: #f56834 !important; width: 100%; cursor: pointer;">
+              Pagar por Transferencia Bancaria
+            </button>
+
+            <div id="datos-transferencia" style="display: none; background: #f9f9f9; border: 2px dashed #f56834; padding: 15px; margin-top: 15px; border-radius: 8px; text-align: left;">
+              <h3 style="color: #f56834 !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Datos de transferencia:</h3>
+              
+              <p style="color: #333 !important; font-size: 1rem; margin-bottom: 5px;"><strong>Alias:</strong> <span style="background: #eee; padding: 2px 5px; border-radius: 4px;">felipedaff.bna2</span></p>
+              <p style="color: #333 !important; font-size: 0.9rem;"><strong>CBU:</strong> 0110028030002815291083</p>
+              <p style="color: #333 !important; font-size: 0.9rem;"><strong>Banco:</strong> Nación Argentina</p>
+              <p style="color: #333 !important; font-size: 0.9rem;"><strong>Titular:</strong> Felipe Mario Daffunchio</p>
+              <p style="color: #333 !important; font-size: 0.9rem;"><strong>CUIL:</strong> 23-42095373-9</p>
+              
+              <div style="background: #fff5f5; padding: 10px; margin-top: 12px; border-radius: 5px; border: 1px solid #feb2b2;">
+                <p style="color: #c53030 !important; font-weight: bold; font-size: 0.85rem; margin: 0;">
+                  📌 Importante: Una vez realizada, enviá el comprobante a <strong>konstanacademia@gmail.com</strong>.
+                </p>
+              </div>
+            </div>
           </div>
         `;
 
@@ -460,9 +480,7 @@
           })
           .then(response => {
             if (response.ok) {
-              // --- EL PIXEL AVISA A META QUE HAY UN INSCRIPTO NUEVO ---
               fbq('track', 'Lead'); 
-              
               document.getElementById('form-container-inscripcion').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
             } else {
