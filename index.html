@@ -171,6 +171,7 @@
   </header>
 
 <section class="container course-grid">
+    
     <article class="course-card">
       <div class="course-img-container" style="background-image: url('flyer.png'), url('flyer.jpg');"></div>
       <div class="course-content">
@@ -188,12 +189,14 @@
     </article>
 
     <article class="course-card">
-      <div class="course-img-container" style="background-image: url('africa.png'), url('africa.jpg');"></div>
+      <div class="course-img-container" style="background-image: url('mil.png'), url('mil.jpg');"></div>
       <div class="course-content">
-        <button class="btn btn-outline" onclick="openModal('plan-africa')">Ver plan de estudios</button>
+        <button class="btn btn-outline" onclick="openModal('plan-militares')">Ver plan de estudios</button>
+        <p style="margin-top: 10px; color: var(--primary) !important; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Próximamente</p>
       </div>
     </article>
-  </section>
+
+</section>
 
   <section class="about-section">
     <div class="container about-grid">
@@ -289,48 +292,52 @@
       } 
       
       // PLAN DE ESTUDIOS: ÁFRICA
-      else if(type === 'plan-africa') {
+else if(type === 'plan-militares') {
         modalData.innerHTML = `
           <div class="plan-container">
-            <h2 style="color: #f56834 !important; font-size: 1.8rem; margin-bottom: 10px;">Genocidios en África: Cómo entender el laberinto de un continente</h2>
+            <h2 style="color: #f56834 !important; font-size: 1.8rem; margin-bottom: 10px;">Botas en el Poder: Anatomía de las dictaduras argentinas</h2>
             
             <div class="highlight-box">
               <strong style="color: #f56834 !important; display: block; margin-bottom: 5px;">OBJETIVO</strong>
-              <p style="font-size: 0.95rem; line-height: 1.5;">Brindar una visión integral y crítica de la historia africana contemporánea, analizando cómo la herencia colonial, las fronteras artificiales y la lucha por recursos estratégicos sentaron las bases para los genocidios del siglo XX y XXI. El participante podrá descifrar la lógica política detrás de las masacres, alejándose de la idea simplista del "odio ancestral".</p>
+              <p style="font-size: 0.95rem; line-height: 1.5;">Analizar la evolución de las Fuerzas Armadas como actor político central en la Argentina del siglo XX. El curso busca romper la excepcionalidad de 1976 para entender la genealogía del intervencionismo militar y las causas estructurales que llevaron al colapso definitivo del 'Partido Militar' en 1983.</p>
             </div>
 
             <div style="margin: 15px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
               <p><strong>DURACIÓN:</strong> DOS HORAS</p>
-              <p><strong>RECURSOS:</strong> Diapositivas dinámicas, análisis de Propaganda, Infografías Geopolíticas, Clips Audiovisuales.</p>
+              <p><strong>RECURSOS:</strong> Diapositivas con imágenes de archivo, mapas, estadísticas y clips de video/películas de época.</p>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 1</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>La Escuadra y el Lápiz, Conferencia de Berlín (1884). Reparto de recursos.</li>
-                  <li>La Identidad como Arma.</li>
+                  <li>Crisis de 1930 y caída de Yrigoyen.</li>
+                  <li>La legalización de la fuerza en el sistema judicial.</li>
+                  <li>El Ejército como “salvadores de la patria”.</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 2</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Ruanda 1994, propaganda y deshumanización (el término "cucarachas").</li>
-                  <li>La Inacción Internacional.</li>
+                  <li>Revolución Libertadora y proscripción peronista.</li>
+                  <li>La interna militar: Azules vs Colorados.</li>
+                  <li>Tutela sobre las presidencias de Frondizi e Illia.</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 3</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Darfur y el Congo, el primer genocidio del siglo XXI.</li>
-                  <li>"Guerra Mundial Africana": el coltán de los celulares como motor.</li>
+                  <li>Revolución Argentina y el proyecto de Onganía.</li>
+                  <li>La modernización económica y el autoritarismo cultural.</li>
+                  <li>Del enemigo externo al "enemigo interno".</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 4</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Justicia y Futuro, los Tribunales Gacaca en Ruanda.</li>
-                  <li>Tablero 2026: El rol de China, mercenarios rusos (Wagner) y nueva carrera por África.</li>
+                  <li>Impacto de la Guerra de Malvinas.</li>
+                  <li>Pérdida absoluta del consenso civil y desastre económico.</li>
+                  <li>Juicio a las Juntas: el entierro del "Partido Militar".</li>
                 </ul>
               </div>
             </div>
