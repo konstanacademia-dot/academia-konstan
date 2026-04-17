@@ -183,6 +183,7 @@
       <div class="course-img-container" style="background-image: url('rus.png'), url('rus.jpg');"></div>
       <div class="course-content">
         <button class="btn btn-outline" onclick="openModal('plan-rusia')">Ver plan de estudios</button>
+        <button class="btn btn-primary" onclick="openModal('form')">Inscribirse (AR$ 20.000)</button>
       </div>
     </article>
 
@@ -345,12 +346,12 @@
             
             <div class="highlight-box">
               <strong style="color: #f56834 !important; display: block; margin-bottom: 5px;">OBJETIVO</strong>
-              <p style="font-size: 0.95rem; line-height: 1.5;">Proporcionar una visión integral de la estructura del poder ruso, analizando la transición fallida del totalitarismo soviético al autoritarismo moderno. Al finalizar, el participante podrá descifrar la lógica del "Vertical de Poder", entender cómo la geografía y la historia imperial condicionan la política exterior de Moscú y analizar las fracturas de una sociedad entre la nostalgia y la hipermodernidad digital.</p>
+              <p style="font-size: 0.95rem; line-height: 1.5;">Proporcionar una visión integral de la estructura del poder ruso, analizando la transición fallida del totalitarismo soviético al autoritarismo moderno. Entender el "Vertical de Poder" y cómo la geografía condiciona la política de Moscú.</p>
             </div>
 
             <div style="margin: 15px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
               <p><strong>DURACIÓN:</strong> DOS HORAS</p>
-              <p><strong>RECURSOS USADOS:</strong> Diapositivas dinámicas, mapas, gráficos de poder, análisis de fotografías, medios, cine y literatura.</p>
+              <p><strong>RECURSOS:</strong> Diapositivas dinámicas, mapas, gráficos de poder y análisis de medios.</p>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
@@ -359,34 +360,31 @@
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
                   <li>Herencia Imperial y el "Estado-Civilización".</li>
                   <li>El trauma de la caída de la URSS.</li>
-                  <li>La Geografía como Destino.</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 2</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Los Años 90, "Democracia" como sinónimo de caos, mafia y humillación.</li>
-                  <li>Surgimiento de los Oligarcas.</li>
+                  <li>Los Años 90 y el surgimiento de los Oligarcas.</li>
                   <li>La llegada de Putin y el pacto social.</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 3</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Control de la energía como arma diplomática.</li>
-                  <li>Servicios de inteligencia y el Estado.</li>
+                  <li>Control de la energía y servicios de inteligencia.</li>
                   <li>Ucrania y el "Mundo Ruso".</li>
                 </ul>
               </div>
               <div>
                 <h3 style="color: #f56834 !important; font-size: 1rem; border-bottom: 2px solid #f56834; display: inline-block; margin-bottom: 10px;">MÓDULO 4</h3>
                 <ul style="font-size: 0.85rem; padding-left: 15px;">
-                  <li>Rusia 2026, nueva generación digital y represión tecnológica.</li>
+                  <li>Rusia 2026: Nueva generación y represión tecnológica.</li>
                   <li>Alianza con China e Irán.</li>
-                  <li>Un imperio que se niega a morir.</li>
                 </ul>
               </div>
             </div>
+            <button class="btn btn-primary" style="margin-top:25px;" onclick="openModal('form')">Inscribirse al Curso</button>
           </div>
         `;
       }
@@ -414,8 +412,16 @@
               
               <select name="Fecha_Elegida" required>
                 <option value="" disabled selected>Elegir fecha del curso</option>
-                <option value="7 de Mayo">Jueves 7 de Mayo, 18:00</option>
-                <option value="13 de Mayo">Miércoles 13 de Mayo, 18:00</option>
+                
+                <optgroup label="Curso: Irán">
+                  <option value="Irán - 16 de Mayo">Jueves 16 de Mayo, 18:00</option>
+                  <option value="Irán - 22 de Mayo">Miércoles 22 de Mayo, 18:00</option>
+                </optgroup>
+
+                <optgroup label="Curso: Rusia">
+                  <option value="Rusia - 21 de Mayo">Martes 21 de Mayo, 18:00</option>
+                  <option value="Rusia - 27 de Mayo">Lunes 27 de Mayo, 18:00</option>
+                </optgroup>
               </select>
 
               <input type="number" name="Edad" placeholder="Edad" required>
